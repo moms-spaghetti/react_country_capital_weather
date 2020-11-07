@@ -6,9 +6,10 @@ import CountryDataContainer from './components/countrydatacontainer'
 import CountryWeatherContainer from './components/countryweathercontainer'
 
 function App() {
-  const [searchData, setSearch] = useState(null)
-  const [countryData, setCountryData] = useState('')
+  const [searchData, setSearch] = useState('')
+  const [countryData, setCountryData] = useState([])
   const [captialCity, setCapitalCity] = useState('')
+  const [inputListDrop, setInputListDrop] = useState([{ name: '...' }])
   const [countryWeather, setCountryWeather] = useState({
     main: {
       temp: '',
@@ -19,7 +20,6 @@ function App() {
     wind: { speed: '' }
   })
   const inputRef = React.createRef()
-
 
   function captureInput(e) {
     if (e.key === 'Enter') {
@@ -41,8 +41,18 @@ function App() {
           }, 1000)
           return
         } else if (data) {
-          setCountryData(data[0])
-          setCapitalCity(data[0].capital)
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].name.toLowerCase() === searchData.toLowerCase()) {
+
+              setCountryData(data[i])
+              setCapitalCity(data[i].capital)
+              break
+            } else {
+              setCountryData(data[0])
+              setCapitalCity(encodeURI(data[0].capital))
+            }
+          }
+          setInputListDrop(data)
         }
       }
       fetchCountryData()
@@ -54,7 +64,18 @@ function App() {
       async function fetchCountryWeather() {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${captialCity}&units=metric&appid=${process.env.REACT_APP_APIKEY}`)
         const data = await response.json()
-        setCountryWeather(data)
+        console.log(data)
+        if (data.cod === '404') {
+          setCountryWeather({
+            main: {
+              temp: '',
+              feels_like: '',
+              pressure: ''
+            },
+            weather: [{ description: '' }],
+            wind: { speed: '' }
+          })
+        } else setCountryWeather(data)
       }
       fetchCountryWeather()
     }
@@ -73,7 +94,7 @@ function App() {
       <Background countryData={countryData} />
       <section className="right-container">
         <h1>{countryData.name}</h1>
-        <Input inputRef={inputRef} captureInput={captureInput} />
+        <Input inputRef={inputRef} inputListDrop={inputListDrop} captureInput={captureInput} />
       </section>
     </main>
   );

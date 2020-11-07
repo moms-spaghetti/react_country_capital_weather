@@ -27,5 +27,3 @@ function CountryWeatherContainer({ countryWeather }) {
 }
 
 export default CountryWeatherContainer
-
-//../svg/${weather[0].icon}.svg
