@@ -2,7 +2,7 @@
 
 Will require a valid API key from [https://openweathermap.org/]
 
-Create a .env file in the root directory 
+Create an .env file in the root directory 
 
 Add the line: 
   REACT_APP_APIKEY=
