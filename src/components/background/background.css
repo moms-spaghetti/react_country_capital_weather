@@ -1,0 +1,11 @@
+.background {
+    content: "";
+    background-size: cover;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 300px;
+    opacity: 0.4;
+}
+

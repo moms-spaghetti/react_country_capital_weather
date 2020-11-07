@@ -1,0 +1,19 @@
+#weather-data-title {
+    margin-top: 50px;
+}
+
+#weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    width: 160px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+li {
+    list-style: none;
+}
