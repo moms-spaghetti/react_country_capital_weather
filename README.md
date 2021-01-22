@@ -1,7 +1,7 @@
 # React Country Weather Data
 
 Created using React and utilised two api calls to retrieve country data including a background flag and country weather data. Also includes a drop down search which populates with similar searches and can be accessed via a drop down at the right hand side.\
-[View Demo](https://moms-spaghetti-reactpanelthings.netlify.app/)
+[View Demo](https://moms-spaghetti-reactcountryweather.netlify.app/)
 <br/><br/>
 
 ## Details
