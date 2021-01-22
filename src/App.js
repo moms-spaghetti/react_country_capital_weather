@@ -38,7 +38,7 @@ function App() {
           inputRef.current.placeholder = 'country not found'
           setTimeout(() => {
             inputRef.current.placeholder = 'Search a country'
-          }, 1000)
+          }, 500)
           return
         } else if (data) {
           for (let i = 0; i < data.length; i++) {
